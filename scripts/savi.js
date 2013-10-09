@@ -22,7 +22,7 @@ SAVI.dashboard = (function($) {
 	}
     
     function getUptime(apikey) {
-        var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=json";
+		var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=json";
         $.ajax({
             url: url,
             type: 'GET',
@@ -53,7 +53,7 @@ SAVI.dashboard = (function($) {
         data.alert = "alert";
         
         function addList(appendTo, param, name, url, statuscode, status){
-            $(appendTo).append('<li><a href="#monitor?id='+param+'" class="site-monitor"><h3 class="ui-li-heading">'+name+'</h3><p class="ui-li-desc">'+url+'</p><p class="ui-li-aside ui-li-desc status'+statuscode+'"><span>'+status+'</span></p></a></li>');
+		  $(appendTo).append('<li class="status-'+statuscode+'"><a href="#monitor?id='+param+'" class="site-monitor"><h3 class="ui-li-heading">'+name+'</h3><h4 class="ui-li-desc">'+url+'</h4><p class="ui-li-desc ul-li-status status'+statuscode+'">Status: '+status+'</p></a></li>');
             $(appendTo).listview("refresh");
         }
         
@@ -67,7 +67,7 @@ SAVI.dashboard = (function($) {
                 statuscount.unknown += 1;
                 break;
             case 2:
-                addList('#site-list', data.id, data.friendlyname, data.url, data.status, 'OK');
+                addList('#site-list', data.id, data.friendlyname, data.url, data.status, 'Online');
                 statuscount.on += 1;
                 break;
             case 8:
@@ -243,6 +243,11 @@ $(document).on('pageshow', '#monitor',  function(){
         console.log('click delete');
         SAVI.monitor.confirmDelete(param);
     });
+});
+
+// On About Page Load
+$(document).on('pageshow', '#about',  function(){    
+    $('.display-version').text(appVersion);
 });
 
 

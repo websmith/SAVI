@@ -35,29 +35,27 @@
     
     <aside data-role="panel" id="nav-panel" >
         <h4>Status Report</h4>
-        <div data-role="controlgroup">
-            <a href="#nav-panel" data-rel="close" data-role="button" data-mini="true" id="totaluptime">Total Effeciency Rating: <span></span></a>
-            <a href="#nav-panel" data-rel="close" data-role="button" data-mini="true" id="sitesmonitored">Sites Monitored: <span></span></a>
-        </div>
+	  	<ul id="status-report">
+		  	<li><a href="#nav-panel" data-rel="close" data-role="button" id="totaluptime">Total Effeciency Rating: <span></span></a></li>  
+		  	<li><a href="#nav-panel" data-rel="close" data-role="button" id="sitesmonitored">Sites Monitored: <span></span></a></li>
+		</ul>
+               
+	  	<ul id="panel-data">
+			<li><a href="#" data-role="button" id="sitesonline">Online: <span></span></a></li>
+			<li><a href="#" data-role="button" id="sitesoffline">Offline: <span></span></a></li>
+			<li><a href="#" data-role="button" id="sitespaused">Paused: <span></span></a></li>
+			<li><a href="#" data-role="button" id="sitesunknown">Unknown: <span></span></a></li>
+			<li><a href="#" data-role="button" id="sitesappearingoff">Appearing Offline: <span></span></a></li>
+		</ul>
         
-        <p class="infotext">Select a group below to filter sites by status:</p>
-        
-        <div data-role="controlgroup" id="panel-data">
-            <a href="#" data-role="button" data-mini="true" id="sitesonline">Online: <span></span></a>
-            <a href="#" data-role="button" data-mini="true" id="sitesoffline">Offline: <span></span></a>
-            <a href="#" data-role="button" data-mini="true" id="sitespaused">Paused: <span></span></a>
-            <a href="#" data-role="button" data-mini="true" id="sitesunknown">Unknown: <span></span></a>
-            <a href="#" data-role="button" data-mini="true" id="sitesappearingoff">Appearing Offline: <span></span></a>
-        </div>
-        
-        <div class="ui-grid-a">
-            <div class="ui-block-a"><a href="#settings" data-role="button" data-mini="true" data-icon="gear">Settings</a></div>
-            <div class="ui-block-b"><a href="#about" data-role="button" data-mini="true" data-icon="info">About</a></div>
-        </div>
+        <ul class="app-options">
+            <li><a href="#settings" data-role="button" data-icon="gear">Settings</a></li>
+            <li><a href="#about" data-role="button" data-icon="info">About</a></li>
+        </ul>
     </aside>
     
     <aside data-role="panel" id="add-monitor" data-position="right" data-display="overlay">
-        <header data-role="header" data-position="fixed" data-theme="c">
+        <header data-role="header" data-position="fixed">
             <a href="#add-monitor" data-rel="close" data-icon="delete" data-iconpos="notext">Cancel</a>
             <h4>Add Site</h4>
         </header>
@@ -89,15 +87,15 @@
 </div>
 
 <!-- SITE MONITOR PAGE -->
-<div data-role="page" id="monitor">
-    <header data-role="header" data-position="fixed">
+<div data-role="page" id="monitor"> 
+  	<header data-role="header" data-position="fixed">
         <a href="#homepage" data-icon="back" data-iconpos="notext">Back</a>
-        <h1 class="monitor-title"></h1>
+        <h1><img src="images/savi-logo.png" alt="savi logo" class="app-logo"></h1>
     </header>
+	
+  	<div class="status-icon-wrap"></div>
     
     <section data-role="content" class="ui-content" role="main">
-        <div class="status-icon-wrap"></div>
-    
         <p class="label">Site Name:</p>
         <p class="sitename-data filled"></p>
         <p class="label">Site URL:</p>
@@ -116,16 +114,16 @@
 <div data-role="page" id="about">
     <header data-role="header" data-position="fixed">
         <a href="#homepage" data-icon="back" data-iconpos="notext">Back</a>
-        <h1>SAVI</h1>
+        <h1><img src="images/savi-logo.png" alt="savi logo" class="app-logo"></h1>
     </header>
+  
+    <div class="version-icon-wrap"><span class="version-icon">Version <span class="display-version"></span></span></div>
     
-    <section data-role="content" class="ui-content" role="main">
+  	<section data-role="content" class="ui-content" role="main">
         <h4>Surveilling Assistant Virtual Interface (SAVI)</h4>
-        <div class="version-icon-wrap"><span class="version-icon">Version 1.0</span></div>
-
         <p>This app was proudly crafted by Hole in the Roof Marketing, Inc.</p>
         <p>Hole in the Roof is passionate about helping our clients succeed with marketing solutions that bring results. We offer solutions for apparel, print, web design and development, promo products, identity and branding and much more.</p>
-        <a href="http://htr.convergencecms.co/" data-role="button">Visit HTR</a>
+        <a href="http://holeintheroof.com" data-role="button">Visit HTR</a>
     </section>
 </div>
 
@@ -133,7 +131,7 @@
 <div data-role="page" id="settings">
     <header data-role="header" data-position="fixed">
         <a href="#homepage" data-icon="back" data-iconpos="notext">Back</a>
-        <h1>SAVI</h1>
+        <h1><img src="images/savi-logo.png" alt="savi logo" class="app-logo"></h1>
     </header>
     
     <section data-role="content" class="ui-content" role="main">
