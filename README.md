@@ -1,5 +1,4 @@
 #SAVI
-====
 
 ####A simple javascript website monitoring application
 SAVI was designed to be an elegant way to track uptime/downtime for websites you manage.
