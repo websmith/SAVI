@@ -22,13 +22,13 @@ SAVI.dashboard = (function($) {
 	}
     
     function getUptime(apikey) {
-		var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=json";
+		var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=jsonp";
         $.ajax({
             url: url,
             type: 'GET',
             context: document.body,
             dataType: 'jsonp',
-            timeout: 15000,
+            timeout: 35000,
             beforeSend: function(){
                 $('#site-list').empty();
                 var $this = $('#site-list'),
@@ -49,15 +49,15 @@ SAVI.dashboard = (function($) {
     }
     
     function getMonitors(data) {
-        totaluptime += (parseInt(data.alltimeuptimeratio*100)/100);
+        totaluptime += (parseInt(((data.alltimeuptimeratio*100)/100),10));
         data.alert = "alert";
         
         function addList(appendTo, param, name, url, statuscode, status){
-		  $(appendTo).append('<li class="status-'+statuscode+'"><a href="#monitor?id='+param+'" class="site-monitor"><h3 class="ui-li-heading">'+name+'</h3><h4 class="ui-li-desc">'+url+'</h4><p class="ui-li-desc ul-li-status status'+statuscode+'">Status: '+status+'</p></a></li>');
+			$(appendTo).append('<li class="status-'+statuscode+'"><a href="#monitor?id='+param+'" class="site-monitor"><h3 class="ui-li-heading">'+name+'</h3><h4 class="ui-li-desc">'+url+'</h4><p class="ui-li-desc ul-li-status status'+statuscode+'">Status: '+status+'</p></a></li>');
             $(appendTo).listview("refresh");
         }
         
-        switch (parseInt(data.status)) {
+        switch (parseInt(data.status, 10)) {
             case 0:
                 addList('#site-list', data.id, data.friendlyname, data.url, data.status, 'Paused');
                 statuscount.pause += 1;
@@ -95,7 +95,7 @@ SAVI.dashboard = (function($) {
     }
     
     function addMonitor(apikey, monitorname, monitorurl) {
-        var url = "http://api.uptimerobot.com/newMonitor?apiKey="+apikey+"&monitorFriendlyName="+monitorname+"&monitorURL="+monitorurl+"&monitorType=1&format=json&noJsonCallback=1";
+		var url = "http://api.uptimerobot.com/newMonitor?apiKey="+apikey+"&monitorFriendlyName="+monitorname+"&monitorURL="+monitorurl+"&monitorType=1&format=json&noJsonCallback=1";
         var request = $.ajax({
             url: url,
             context: document.body,
@@ -109,7 +109,7 @@ SAVI.dashboard = (function($) {
     // count down till next refresh
     function countdown() {
 		var now = Date.now(),
-			elapsed = parseInt((now - start) / 1000),
+			elapsed = parseInt(((now - start) / 1000), 10),
 			mins = Math.floor((refresh - elapsed) / 60),
 			secs = refresh - (mins * 60) - elapsed;
             
@@ -151,7 +151,7 @@ SAVI.monitor = (function($) {
     
     function getUptime(apikey, id){
         var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&monitors="+id+"&logs=1&format=json";
-        $.ajax({
+		$.ajax({
             url: url,
             type: 'GET',
             context: document.body,
@@ -236,7 +236,7 @@ $(document).on('pageshow', '#homepage', function() {
 
 
 // On Monitor Page Load
-$(document).on('pageshow', '#monitor',  function(){
+$(document).on('pageshow', '#monitor', function(){
     SAVI.monitor.init(param);
     
     $('#delete-monitor').on('click', function() {
@@ -246,7 +246,7 @@ $(document).on('pageshow', '#monitor',  function(){
 });
 
 // On About Page Load
-$(document).on('pageshow', '#about',  function(){    
+$(document).on('pageshow', '#about', function(){    
     $('.display-version').text(appVersion);
 });
 
