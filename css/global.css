@@ -268,6 +268,12 @@ SIDEBAR
     margin-top: 60px;
 }
 
+#new-monitor-form .ui-field-contain label.ui-input-text {
+	display: block;
+	width: auto;
+}
+
+.ui-hide-label input.ui-input-text, .ui-hide-label textarea.ui-input-text, .ui-hide-label .ui-input-search, .ui-hide-label div.ui-input-text, .ui-input-search input.ui-input-text, div.ui-input-text input.ui-input-text { color: white; }
 
 /*-----------
 FOOTER

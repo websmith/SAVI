@@ -4,7 +4,7 @@ window.SAVI = window.SAVI || {};
 SAVI.dashboard = (function($) {
     var start = Date.now(),
         intervalId,
-        //$countdown = {},
+        $countdown = {},
         totaluptime,
         statuscount,
         dataObj = {};
@@ -13,16 +13,14 @@ SAVI.dashboard = (function($) {
 		start = Date.now();
         totaluptime = 0;
         statuscount = { pause: 0, on: 0, off: 0, appearsoff: 0, unknown: 0 };
-        
+        		
 		getUptime(apiKey);
-        
-        $('#site-list').empty();
-        
+
 		intervalId = setInterval(countdown, 1000);        
 	}
     
     function getUptime(apikey) {
-		var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=jsonp";
+		var url = "http://api.uptimerobot.com/getMonitors?apiKey="+apikey+"&logs=1&format=json";
         $.ajax({
             url: url,
             type: 'GET',
@@ -85,7 +83,6 @@ SAVI.dashboard = (function($) {
         $('#nav-panel .ui-panel-inner #sitespaused .ui-btn-text span').html(statuscount.pause);
         $('#nav-panel .ui-panel-inner #sitesunknown .ui-btn-text span').html(statuscount.unknown);
         $('#nav-panel .ui-panel-inner #sitesappearingoff .ui-btn-text span').html(statuscount.appearsoff);
-        $('#site-list').fadeIn();
 
         return totaluptime;
     }
@@ -143,7 +140,6 @@ SAVI.monitor = (function($) {
     }
     
     function confirmDelete(id){
-        console.log('run confirmDelete function');
         if(confirm("Are you sure you want to permanently delete Monitor#: "+id+"?")) {
             deleteMonitor(apiKey, id);
         }
